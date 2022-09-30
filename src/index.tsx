@@ -12,8 +12,9 @@ const Testing: Plugin = {
 
    onStart() {
       setInterval(() => {
-         let customText = get('Testing', "urlPrefix", "")
-         console.log(customText)
+         // this part is in an inverval which means it will run continously, put this in your ***MAIN PATCH***
+         let customText = get('Testing', "urlPrefix", "") // plugin name, the value name, the default value
+         console.log(customText) // logs the text
       }, 3000)
    },
 
@@ -22,7 +23,7 @@ const Testing: Plugin = {
    },
 
    getSettingsPanel({ settings }) {
-      return <Settings settings={settings} />;
+      return <Settings settings={settings} />; // opens settings menu
    }
 };
 
