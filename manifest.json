@@ -1,11 +1,11 @@
 {
-   "name": "SilentTyping",
+   "name": "Testing",
    "version": "1.0.0",
-   "description": "Silences your typing indicator.",
+   "description": "a plugin test by acquite",
    "authors": [
       {
-         "name": "eternal",
-         "id": "263689920210534400"
+         "name": "acquite",
+         "id": "581573474296791211"
       }
    ]
 }

@@ -1,20 +1,20 @@
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
 import { React } from 'enmity/metro/common';
-import { getByProps } from 'enmity/metro';
 import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
-
+import { get } from 'enmity/api/settings'
 import Settings from './components/Settings';
 
-const Typing = getByProps('startTyping');
-const Patcher = create('silent-typing');
+const Patcher = create('testing-settings');
 
-const SilentTyping: Plugin = {
+const Testing: Plugin = {
    ...manifest,
 
    onStart() {
-      Patcher.instead(Typing, 'startTyping', () => { });
-      Patcher.instead(Typing, 'stopTyping', () => { });
+      setInterval(() => {
+         let customText = get('Testing', "urlPrefix", "")
+         console.log(customText)
+      }, 3000)
    },
 
    onStop() {
@@ -26,4 +26,4 @@ const SilentTyping: Plugin = {
    }
 };
 
-registerPlugin(SilentTyping);
+registerPlugin(Testing);
