@@ -1,30 +1,33 @@
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
-import { React } from 'enmity/metro/common';
 import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
-import { get } from 'enmity/api/settings'
-import Settings from './components/Settings';
+import { get, set } from 'enmity/api/settings'
+import Manifest from '../manifest.json'
 
-const Patcher = create('testing-settings');
+const url = "https://raw.githubusercontent.com/vendetta-mod/builds/master/vendetta.js"
 
 const Testing: Plugin = {
    ...manifest,
 
-   onStart() {
-      setInterval(() => {
-         // this part is in an inverval which means it will run continously, put this in your ***MAIN PATCH***
-         let customText = get('Testing', "urlPrefix", "") // plugin name, the value name, the default value
-         console.log(customText) // logs the text
-      }, 3000)
+   async onStart() {
+      // check if vendetta already exists
+      let maybeVendetta = get(Manifest.name, "vendettaCode", null)
+
+      // if not fetch it and store it
+      if (!maybeVendetta) {
+         const res = await fetch(url)
+         set(Manifest.name, "vendettaCode", await res.text())
+      }
+      
+      // get the stored data which should be valid
+      const mustVendetta = get(Manifest.name, "vendettaCode", null) as string
+
+      // eval it
+      eval(mustVendetta)
    },
 
-   onStop() {
-      Patcher.unpatchAll();
-   },
-
-   getSettingsPanel({ settings }) {
-      return <Settings settings={settings} />; // opens settings menu
-   }
+   // youdetta widetta neverdetta gedetta ridetta odetta vendetta
+   onStop() { },
 };
 
 registerPlugin(Testing);
