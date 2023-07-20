@@ -25,8 +25,8 @@ const VendettaCompat: Plugin = {
          }
       }
 
-      // defidetta thedetta custodetta vendetta urldetta
-      const customVendettaURL = get(Manifest.name, 'customVendettaURL') as { enabled: false, url: string };
+      // defidetta thedetta custodetta vendetta urldetta settingdetta
+      const customVendettaURL = get(Manifest.name, 'customVendettaURL') as { enabled: boolean, url: string };
 
       // basedetta urldetta odetta vendetta
       const url = customVendettaURL?.enabled
