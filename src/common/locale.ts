@@ -102,7 +102,8 @@ export default {
             `Successfully ${kind} Strange Words.`
         ],
         icons: {
-            success: getIDByName('ic_check_18px')
+            success: getIDByName('ic_check_18px'),
+            fail: getIDByName('')
         }
     }
 }
