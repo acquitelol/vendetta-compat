@@ -19,6 +19,20 @@ export default {
                 "Make Vendetta use strange wording for all of its text"
             ]
         },
+        customVendettaURL: {
+            title: [
+                "Custometta Vendetta URLDetta",
+                "Custom Vendetta URL"
+            ],
+            description: [
+                "Loadetta Vendetta fromdetta adetta custometta endpointdetta",
+                "Loads Vendetta from a custom endpoint"
+            ],
+            input: [
+                "Vendetta URLDetta",
+                "Vendetta URL"
+            ]
+        },
         clearOptions: {
             title: [
                 "Cledetta Stodettas",
@@ -88,7 +102,8 @@ export default {
             `Successfully ${kind} Strange Words.`
         ],
         icons: {
-            success: getIDByName('ic_check_18px')
+            success: getIDByName('ic_check_18px'),
+            fail: getIDByName('')
         }
     }
 }
