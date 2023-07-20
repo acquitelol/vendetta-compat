@@ -1,4 +1,4 @@
-import { FormDivider, FormRow, FormSection, FormSwitch, FormText } from 'enmity/components';
+import { FormDivider, FormRow, FormSection, FormSwitch, FormText, FormInput } from 'enmity/components';
 import { Constants, React, StyleSheet, Toasts } from 'enmity/metro/common';
 import { get, set } from 'enmity/api/settings'
 import locale from '../common/locale';
@@ -7,6 +7,10 @@ import { reload } from 'enmity/api/native';
 
 export default ({ Manifest }) => {
     const [isStrange, setIsStrange] = React.useState(get(Manifest.name, 'strangeCode', 0));
+    const [customVenURL, setCustomVenURL] = React.useState(get(Manifest.name, 'customVendettaURL', {
+        enabled: false,
+        url: "http://localhost:4040/vendetta.js"
+    }) as { enabled: boolean, url: string });
     const styles = StyleSheet.createThemedStyleSheet({
         icon: {
             color: Constants.ThemeColorMap.INTERACTIVE_NORMAL
@@ -39,6 +43,29 @@ export default ({ Manifest }) => {
                     }}
                 />}
             />
+            <FormRow
+                label={locale.settings.customVendettaURL.title[isStrange]}
+                subLabel={locale.settings.customVendettaURL.description[isStrange]}
+                leading={<FormRow.Icon style={styles.icon} source={getIDByName("ic_locale_24px")} />}
+                trailing={<FormSwitch
+                    value={customVenURL.enabled}
+                    onValueChange={() => setCustomVenURL((prev: any) => {
+                        set(Manifest.name, "customVendettaURL", { enabled: true, url: prev.url });
+                        return { enabled: true, url: prev.url };
+                    })}
+                />}
+            />
+            {customVenURL.enabled && (
+                <FormInput
+                    value={customVenURL.url}
+                    onChange={(txt: string) => setCustomVenURL((prev: any) => {
+                        set(Manifest.name, "customVendettaURL", { enabled: prev.enabled, url: txt });
+                        return { enabled: prev.enabled, url: txt };
+                    })}
+                    placeholder="http://localhost:4040/vendetta.js"
+                    title={locale.settings.customVendettaURL.input[isStrange]}
+                />
+            )}
         </FormSection>
         <FormDivider />
         <FormSection title={locale.settings.clearOptions.title[isStrange]}>
