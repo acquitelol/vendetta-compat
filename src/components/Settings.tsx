@@ -58,7 +58,7 @@ export default ({ Manifest }) => {
             {customVenURL.enabled && (
                 <FormInput
                     value={customVenURL.url}
-                    onChange={(txt: string) => setCustomVenURL((prev: any) => {
+                    onChangeText={(txt: string) => setCustomVenURL((prev: any) => {
                         set(Manifest.name, "customVendettaURL", { enabled: prev.enabled, url: txt });
                         return { enabled: prev.enabled, url: txt };
                     })}
