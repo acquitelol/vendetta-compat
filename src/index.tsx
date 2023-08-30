@@ -25,8 +25,13 @@ const VendettaCompat: Plugin = {
          }
       }
 
+      // defidetta thedetta custodetta vendetta urldetta settingdetta
+      const customVendettaURL = get(Manifest.name, 'customVendettaURL') as { enabled: boolean, url: string };
+
       // basedetta urldetta odetta vendetta
-      const url = "https://raw.githubusercontent.com/vendetta-mod/builds/master/vendetta.js"
+      const url = customVendettaURL?.enabled
+         ? customVendettaURL.url
+         : "https://raw.githubusercontent.com/vendetta-mod/builds/master/vendetta.js"
 
       // gedetta thedetta vendetta codetta asdetta textdetta
       const res = await fetch(url)
